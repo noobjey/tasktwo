@@ -11,17 +11,21 @@ class ListsController < ApplicationController
   end
 
   def edit
-    @list = List.find_by(id: params[:id])
+    @list = find_list()
   end
 
   def update
-    list = List.find_by(id: params[:id])
-    list.update_attributes(allowed_params)
+    find_list().update_attributes(allowed_params)
 
     redirect_to dashboard_path
   end
 
+
   private
+
+  def find_list
+    List.find_by(id: params[:id])
+  end
 
   def allowed_params
     params.require(:list).permit(:title)
