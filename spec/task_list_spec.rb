@@ -13,6 +13,16 @@ RSpec.feature "Lists:", type: :feature do
       end
 
       expect(current_path).to eq(new_list_path)
+      expect(page).to have_field("Title")
+      expect(page).to have_button("Create")
+
+      fill_in "Title", with: "First List"
+      click_on "Create List"
+
+      expect(current_path).to eq(dashboard_path)
+      within "#task-lists" do
+        expect(page).to have_content("First List")
+      end
     end
   end
 end

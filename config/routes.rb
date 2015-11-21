@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index"
 
-  resources :lists, only: [:new]
+  resources :lists, only: [:new, :create]
 end
