@@ -12,11 +12,10 @@
   <tr>
     <th>Name</th>
     <th>Edit</th>
-    <th>Archive</th>
   </tr>
   </thead>
 
   <tbody>
-  <%= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>
+    <%= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>
   </tbody>
 </table>
