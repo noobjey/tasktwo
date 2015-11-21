@@ -1,0 +1,19 @@
+<div class="row center-align">
+  <div class="col s6">
+
+    <div class="section center-align">
+      <h5><%= form_title %></h5>
+
+      <div class="divider"></div>
+    </div>
+
+    <%= form_for list, method: form_method do |f| %>
+      <div class="input-field">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <%= f.submit class: "btn" %>
+    <% end %>
+
+  </div>
+</div>
