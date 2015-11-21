@@ -5,6 +5,7 @@
   <div class="section">
     <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn" %>
   </div>
+  <div class="divider"></div>
 </div>
 
 <table class="bordered highlight centered">
@@ -16,6 +17,9 @@
   </thead>
 
   <tbody>
-    <%= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>
+  <%= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>
   </tbody>
 </table>
+
+
+

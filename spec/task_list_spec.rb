@@ -16,11 +16,19 @@ RSpec.feature "Lists:", type: :feature do
 
     context "viewing their lists" do
 
-      it "sees unarchived lists" do
+      it "sees unarchived lists by default" do
         within "#task-lists" do
           expect(page).to have_content(list_2.title)
           expect(page).to have_content(list_3.title)
           expect(page).not_to have_content(list_archived.title)
+        end
+      end
+
+      it "can see archived lists" do
+        within "#archived-task-lists" do
+          expect(page).not_to have_content(list_2.title)
+          expect(page).not_to have_content(list_3.title)
+          expect(page).to have_content(list_archived.title)
         end
       end
     end

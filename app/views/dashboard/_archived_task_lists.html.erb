@@ -1,0 +1,28 @@
+<div class="section center-align">
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+
+      <div class="collapsible-header">
+        <h5>Archived Lists</h5>
+      </div>
+
+      <div class="collapsible-body">
+
+        <table class="bordered highlight centered">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Edit</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <%= render partial: "dashboard/list", collection: @dashboard_presentor.archived_task_lists, as: :list %>
+          </tbody>
+        </table>
+
+      </div>
+
+    </li>
+  </ul>
+</div>
