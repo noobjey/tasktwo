@@ -3,6 +3,17 @@ require "rails_helper"
 RSpec.feature "Lists:", type: :feature do
 
   describe "a user" do
+    let!(:list_2) { List.create(title: "List Two")}
+    let!(:list_3) { List.create(title: "List Three")}
+
+    it "can view all lists" do
+      visit dashboard_path
+
+      within "#task-lists" do
+        expect(page).to have_content(list_2.title)
+        expect(page).to have_content(list_3.title)
+      end
+    end
 
     it "can create a list" do
       visit dashboard_path
