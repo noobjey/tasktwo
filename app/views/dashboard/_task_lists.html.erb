@@ -1,12 +1,12 @@
-<div>
+<div class="section center-align">
   <h5>Task Lists</h5>
   <div class="divider"></div>
-  <div>
+  <div class="section">
     <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn" %>
   </div>
 </div>
 
-<table>
+<table class="bordered highlight centered">
   <thead>
   <tr>
     <th>Name</th>
@@ -18,8 +18,18 @@
   <tbody>
   <tr>
     <td>List 1</td>
-    <td>link_to edit_list_path(list)</td>
-    <td>link_to archive_list_path(list)</td>
+    <td><%= link_to "Edit", class: "btn-flat"%></td>
+    <td><%= link_to "Archive", class: "btn-flat" %></td>
+  </tr>
+  <tr>
+    <td>List 2</td>
+    <td><%= link_to "Edit", class: "btn-flat"%></td>
+    <td><%= link_to "Archive", class: "btn-flat" %></td>
+  </tr>
+  <tr>
+    <td>List 3</td>
+    <td><%= link_to "Edit", class: "btn-flat"%></td>
+    <td><%= link_to "Archive", class: "btn-flat" %></td>
   </tr>
   </tbody>
 </table>
