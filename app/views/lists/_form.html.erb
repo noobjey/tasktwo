@@ -8,11 +8,33 @@
     </div>
 
     <%= form_for list, method: form_method do |f| %>
-      <div class="input-field">
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+      <div class="section">
+
+        <div class="row">
+
+          <div class="input-field col s8">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
+
+          <div class="switch col s4">
+            <div>
+              <%= f.label :archive %>
+            </div>
+
+            <label>
+              Off
+              <%= f.check_box :archive %>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+
+        </div>
       </div>
+
       <%= f.submit class: "btn" %>
+
     <% end %>
 
   </div>
