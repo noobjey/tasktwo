@@ -14,4 +14,8 @@ RSpec.configure do |config|
 
   config.order = :random
   Kernel.srand config.seed
+
+  # https://www.relishapp.com/rspec/rspec-core/docs/configuration/excluding-lines-from-the-backtrace
+  config.backtrace_exclusion_patterns = [ /gems/ ]
+
 end

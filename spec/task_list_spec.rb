@@ -8,11 +8,21 @@ RSpec.feature "Lists:", type: :feature do
       visit dashboard_path
 
       within "#task-lists" do
-        expect page.to have_button "New Task"
-        click_on "New Task"
+        expect(page).to have_link "New List"
+        click_on "New List"
       end
 
-      expect(current_path).to eq(new_task_path)
+      expect(current_path).to eq(new_list_path)
+      expect(page).to have_field("Title")
+      expect(page).to have_button("Create")
+
+      fill_in "Title", with: "First List"
+      click_on "Create List"
+
+      expect(current_path).to eq(dashboard_path)
+      within "#task-lists" do
+        expect(page).to have_content("First List")
+      end
     end
   end
 end

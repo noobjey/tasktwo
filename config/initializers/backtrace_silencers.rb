@@ -5,3 +5,7 @@
 
 # You can also remove all the silencers if you're trying to debug a problem that might stem from framework code.
 # Rails.backtrace_cleaner.remove_silencers!
+
+# http://api.rubyonrails.org/classes/ActiveSupport/BacktraceCleaner.html
+Rails.backtrace_cleaner.add_filter   { |line| line.gsub(Rails.root.to_s, '') } # strip the Rails.root prefix
+Rails.backtrace_cleaner.add_silencer { |line| line =~ /gems/ } # skip any lines from mongrel or rubygems

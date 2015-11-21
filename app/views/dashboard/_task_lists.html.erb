@@ -1,0 +1,22 @@
+<div class="section center-align">
+  <h5>Task Lists</h5>
+
+  <div class="divider"></div>
+  <div class="section">
+    <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn" %>
+  </div>
+</div>
+
+<table class="bordered highlight centered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    <th>Archive</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <%= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>
+  </tbody>
+</table>
