@@ -15,6 +15,13 @@ RSpec.describe Task, type: :model do
         expect(tasks.first).to eq(uncompleted_task)
       end
 
+      it "#compeleted" do
+        tasks = Task.completed
+
+        expect(tasks.count).to eq(1)
+        expect(tasks.first).to eq(completed_task)
+      end
+
       it "returns text value of status" do
         expect(completed_task.status_string).to eq("complete")
         expect(uncompleted_task.status_string).to eq("incomplete")

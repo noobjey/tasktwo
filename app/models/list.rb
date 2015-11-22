@@ -13,6 +13,10 @@ class List < ActiveRecord::Base
     where(archive: true)
   end
 
+  def self.with_completed_tasks
+    joins(:tasks).merge(Task.completed).uniq
+  end
+
 
   private
 
