@@ -15,6 +15,8 @@ gem 'materialize-sass'
 
 group :development, :test do
   gem 'byebug'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
 
 group :test do
