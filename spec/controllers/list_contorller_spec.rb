@@ -5,7 +5,7 @@ RSpec.describe ListsController, type: :controller do
   describe "#delete" do
 
     let!(:list_archived) {List.create(title: "An Archived List", archive: true)}
-    let!(:list_unarchived) {List.create(title: "An Archived List", archive: false)}
+    let!(:list_unarchived) {List.create(title: "An Unarchived List", archive: false)}
 
     it "can delete an archived task" do
       delete :destroy, id: list_archived.id
