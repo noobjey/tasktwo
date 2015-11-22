@@ -3,5 +3,5 @@
   <td><%= task.description %></td>
   <td><%= task.status_string %></td>
   <td><%= task.due_date.strftime("%d %b %Y") %></td>
-  <td><%= link_to "Edit", class: "btn-flat" %></td>
+  <td><%= link_to "Edit", edit_list_task_path(list, task), class: "btn-flat" %></td>
 </tr>

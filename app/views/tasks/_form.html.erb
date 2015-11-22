@@ -7,7 +7,7 @@
       <div class="divider"></div>
     </div>
 
-    <%= form_for [@list, @task], method: form_method do |f| %>
+    <%= form_for [list, task], method: form_method do |f| %>
 
       <div class="row">
         <div class="input-field col s8">
@@ -36,7 +36,7 @@
       </div>
 
       <div class="row" id="form-date-label">
-        <div class="col s1">
+        <div class="col s2">
           <%= f.label :due_date, class: "left-align" %>
         </div>
       </div>
@@ -47,7 +47,7 @@
       </div>
 
       <div class="row">
-        <%= f.submit "Create Task", class: "btn col s4 offset-s4" %>
+        <%= f.submit form_method == :put ? "Update Task" : "Create Task", class: "btn col s4 offset-s4" %>
       </div>
     <% end %>
 
