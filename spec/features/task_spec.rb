@@ -40,7 +40,7 @@ RSpec.feature "Tasks:", type: :feature do
       end
     end
 
-    context "user with existing tasks" do
+    context "with existing tasks" do
       let!(:list_with_a_task) { create(:list, tasks_count: 1) }
       let!(:task) { list_with_a_task.tasks.first }
 
@@ -78,6 +78,26 @@ RSpec.feature "Tasks:", type: :feature do
           within first("ul li .collapsible-body") do
             expect(page).not_to have_content task.title
             expect(page).not_to have_content task.description
+          end
+        end
+      end
+    end
+
+    context "with completed tasks" do
+      let!(:list_with_completed_tasks) { create(:list_with_completed_tasks, tasks_count: 1) }
+      let!(:completed_task) { list_with_completed_tasks.tasks.last }
+      before do
+        visit dashboard_path
+      end
+
+      it "can see lists with those tasks" do
+        click_on "Completed Tasks"
+
+        within "#completed-task-lists" do
+          within find("ul li .collapsible-body") do
+            expect(page).to have_content completed_task.title
+            expect(page).to have_content completed_task.description
+            expect(page).to have_content completed_task.status_string
           end
         end
       end

@@ -21,12 +21,6 @@ FactoryGirl.define do
 
 
   factory :list_with_completed_tasks, parent: :list do
-    title { Faker::Team.name }
-
-    transient do
-      tasks_count 5
-    end
-
     after(:create) do |list, evaluator|
       create_list(:completed_tasks, evaluator.tasks_count, list: list)
     end

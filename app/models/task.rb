@@ -5,6 +5,10 @@ class Task < ActiveRecord::Base
     Task.where(status: false)
   end
 
+  def self.completed
+    Task.where(status: true)
+  end
+
   def status_string
     return "complete" if self.status
     "incomplete"
