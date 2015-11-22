@@ -12,9 +12,10 @@ RSpec.feature "Lists:", type: :feature do
       visit dashboard_path
     end
 
+    
     context "viewing their lists" do
 
-      xit "sees unarchived lists by default" do
+      it "sees unarchived lists by default" do
         within "#task-lists" do
           expect(page).to have_content(list_2.title)
           expect(page).to have_content(list_3.title)
@@ -30,6 +31,7 @@ RSpec.feature "Lists:", type: :feature do
         end
       end
     end
+
 
     context "that creates a list" do
       it "can see the new list" do
@@ -77,10 +79,11 @@ RSpec.feature "Lists:", type: :feature do
       end
     end
 
+
     context "that deletes a list" do
       it "can delete an archived list" do
         within "#archived-task-lists" do
-          within first("tbody tr") do
+          within first("ul li .collapsible-header") do
             click_on "Delete"
           end
         end

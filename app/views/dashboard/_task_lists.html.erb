@@ -9,7 +9,7 @@
 <div col="row">
   <div class="col s12">
     <ul class="collapsible popout" data-collapsible="accordion">
-      <%= render partial: "dashboard/list_row", collection: @dashboard_presentor.task_lists, as: :list %>
+      <%= render partial: "dashboard/list_row", collection: @dashboard_presentor.task_lists, as: :list, locals: { show_delete: false } %>
     </ul>
   </div>
 </div>

@@ -5,12 +5,19 @@
       <div class="col s2">
         <i class="material-icons">list</i>
       </div>
-      <div class="col s8">
+      <div class="col s6">
         <%= list.title %>
       </div>
       <div class="col s2">
         <%= link_to "Edit", edit_list_path(list), class: "btn-flat" %>
       </div>
+
+      <% if show_delete %>
+        <div class="col s2">
+          <%= link_to "Delete", list_path(list), method: :delete, class: "btn-flat" if show_delete %>
+        </div>
+      <% end %>
+
     </div>
   </div>
 
@@ -31,4 +38,5 @@
       </tbody>
     </table>
   </div>
+
 </li>
