@@ -1,5 +1,4 @@
 require 'faker'
-require 'byebug'
 
 FactoryGirl.define do
 
