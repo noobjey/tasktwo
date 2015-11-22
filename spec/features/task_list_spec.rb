@@ -1,6 +1,5 @@
 require "rails_helper"
 
-
 RSpec.feature "Lists:", type: :feature do
 
   describe "a user" do

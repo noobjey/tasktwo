@@ -1,0 +1,55 @@
+<div class="row center-align" id="task-form">
+  <div class="col s10 offset-s1">
+
+    <div class="section center-align">
+      <h5><%= form_title %></h5>
+
+      <div class="divider"></div>
+    </div>
+
+    <%= form_for [@list, @task], method: form_method do |f| %>
+
+      <div class="row">
+        <div class="input-field col s8">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+
+        <div class="switch col s4">
+          <div>
+            <%= f.label :status %>
+          </div>
+          <label>
+            Off
+            <%= f.check_box :status %>
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :description %>
+          <%= f.text_field :description %>
+        </div>
+      </div>
+
+      <div class="row" id="form-date-label">
+        <div class="col s1">
+          <%= f.label :due_date, class: "left-align" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.date_field :due_date, class: "datepicker" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <%= f.submit "Create Task", class: "btn col s4 offset-s4" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
