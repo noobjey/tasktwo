@@ -13,11 +13,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'bcrypt', '~> 3.1.7'
 gem 'materialize-sass'
 gem 'jquery-datatables-rails', github: "rweng/jquery-datatables-rails", branch: "master"
+gem 'faker'
+gem 'factory_girl_rails'
 
 group :development, :test do
   gem 'byebug'
-  gem 'faker'
-  gem 'factory_girl_rails'
 end
 
 group :test do
