@@ -11,6 +11,10 @@ class Task < ActiveRecord::Base
 
   def status_string
     return "complete" if self.status
-    "incomplete"
+    "active"
+  end
+
+  def due_date_formatted
+    self.due_date.strftime("%d %B %Y")
   end
 end

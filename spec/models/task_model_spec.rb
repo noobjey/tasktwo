@@ -24,7 +24,7 @@ RSpec.describe Task, type: :model do
 
       it "returns text value of status" do
         expect(completed_task.status_string).to eq("complete")
-        expect(uncompleted_task.status_string).to eq("incomplete")
+        expect(uncompleted_task.status_string).to eq("active")
       end
     end
 

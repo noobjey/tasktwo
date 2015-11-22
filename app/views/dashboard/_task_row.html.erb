@@ -2,6 +2,6 @@
   <td><%= task.title %></td>
   <td><%= task.description %></td>
   <td><%= task.status_string %></td>
-  <td><%= task.due_date.strftime("%d %b %Y") %></td>
+  <td><%= task.due_date_formatted %></td>
   <td><%= link_to "Edit", edit_list_task_path(list, task), class: "btn-flat" %></td>
 </tr>
