@@ -101,6 +101,31 @@ RSpec.feature "Tasks:", type: :feature do
           end
         end
       end
+
+      it "can change completed status" do
+        list_with_completed_tasks.tasks.uncompleted.first.delete
+
+        visit dashboard_path
+
+        click_on "Completed Tasks"
+
+        within "#completed-task-lists" do
+          within find("ul li .collapsible-body") do
+            click_on "Edit"
+          end
+        end
+
+        expect(current_path).to eq(edit_list_task_path(list_with_completed_tasks, list_with_completed_tasks.tasks.first))
+        uncheck "Status"
+        click_on "Update Task"
+
+        within "#task-lists" do
+          within find("ul li .collapsible-body") do
+            expect(page).to have_content completed_task.title
+            expect(page).to have_content completed_task.description
+          end
+        end
+      end
     end
   end
 
