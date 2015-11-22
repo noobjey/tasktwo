@@ -1,39 +1,17 @@
-<div class="section">
-
-
-  <div col="row">
-    <div class="col s12">
-      <ul class="collapsible popout" data-collapsible="accordion">
-        <%= render partial: "dashboard/collapsible_try", collection: @dashboard_presentor.task_lists, as: :list %>
-      </ul>
-    </div>
-
-  </div>
-
-  <div col="row">
-
-    <!--<div class="col s6">-->
-    <!--<h5>Task Lists</h5>-->
-    <!--</div>-->
-    <!--<div class="col s4 offset-s2">-->
+<div class="container">
+  <div class="section">
+    <div col="row">
       <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn col s10 offset-s1" %>
-    <!--</div>-->
-
-
+    </div>
   </div>
-  <!--<div class="divider"></div>-->
-
 </div>
 
-<!--<table class="bordered highlight centered">-->
-  <!--<thead>-->
-  <!--<tr>-->
-    <!--<th>Title</th>-->
-    <!--<th>Edit</th>-->
-  <!--</tr>-->
-  <!--</thead>-->
+<div col="row">
+  <div class="col s12">
+    <ul class="collapsible popout" data-collapsible="accordion">
+      <%= render partial: "dashboard/list_row", collection: @dashboard_presentor.task_lists, as: :list %>
+    </ul>
+  </div>
+</div>
 
-  <!--<tbody>-->
-  <!--<%#= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>-->
-  <!--</tbody>-->
-<!--</table>-->
+
