@@ -21,7 +21,11 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    find_list().destroy
+    list = find_list().destroy
+
+    if list
+      flash[:success] = "List #{list.title} removed."
+    end
 
     redirect_to dashboard_path
   end
