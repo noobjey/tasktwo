@@ -77,7 +77,7 @@ RSpec.feature "Lists:", type: :feature do
       end
     end
 
-    context "that deletes a list", focus: true do
+    context "that deletes a list" do
       it "can delete an archived list" do
         within "#archived-task-lists" do
           within first("tbody tr") do
