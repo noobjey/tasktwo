@@ -1,7 +1,21 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require "factory_girl_rails"
+
+puts "Creating Tasks"
+
+puts "Regular Lists: "
+10.times do
+  new_list = FactoryGirl.create(:list)
+  puts new_list.title
+end
+
+puts "Archived Lists: "
+3.times do
+  new_archived_list = FactoryGirl.create(:archived_list)
+  puts new_archived_list.title
+end
+
+puts "Lists with Completed Tasks: "
+3.times do
+  new_list_with_completed_tasks = FactoryGirl.create(:list_with_completed_tasks)
+  puts new_list_with_completed_tasks.title
+end

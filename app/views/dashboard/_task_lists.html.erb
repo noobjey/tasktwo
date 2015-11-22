@@ -1,25 +1,17 @@
-<div class="section center-align">
-  <h5>Task Lists</h5>
-
-  <div class="divider"></div>
+<div class="container">
   <div class="section">
-    <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn" %>
+    <div col="row">
+      <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn col s10 offset-s1" %>
+    </div>
   </div>
-  <div class="divider"></div>
 </div>
 
-<table class="bordered highlight centered">
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Edit</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <%= render partial: "dashboard/list", collection: @dashboard_presentor.task_lists, as: :list %>
-  </tbody>
-</table>
-
+<div col="row">
+  <div class="col s12">
+    <ul class="collapsible popout" data-collapsible="accordion">
+      <%= render partial: "dashboard/list_row", collection: @dashboard_presentor.task_lists, as: :list, locals: { show_delete: false } %>
+    </ul>
+  </div>
+</div>
 
 

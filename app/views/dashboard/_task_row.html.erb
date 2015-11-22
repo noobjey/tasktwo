@@ -1,0 +1,7 @@
+<tr>
+  <td><%= task.title %></td>
+  <td><%= task.description %></td>
+  <td><%= task.status_string %></td>
+  <td><%= task.due_date.strftime("%d %b %Y") %></td>
+  <td><%= link_to "Edit", class: "btn-flat" %></td>
+</tr>
