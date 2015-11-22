@@ -1,4 +1,6 @@
 class List < ActiveRecord::Base
+  has_many :tasks
+
   before_destroy :ensure_archived
 
   validates :title, uniqueness: true
