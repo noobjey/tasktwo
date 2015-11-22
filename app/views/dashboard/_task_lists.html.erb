@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container ">
   <div class="section">
     <div col="row">
-      <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn col s10 offset-s1" %>
+      <%= link_to "New List", new_list_path, class: "waves-effect waves-light btn col s10 offset-s1 new-list-btn" %>
     </div>
   </div>
 </div>
@@ -14,7 +14,7 @@
       <%= render partial: "dashboard/list_row",
                  collection: @dashboard_presentor.task_lists,
                  as: :list,
-                 locals: { show_delete: false, show_completed_tasks: false } %>
+                 locals: { show_delete: false, show_completed_tasks: false, show_create_tasks: true } %>
     </ul>
   </div>
 </div>

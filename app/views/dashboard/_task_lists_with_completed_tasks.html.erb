@@ -4,7 +4,7 @@
       <%= render partial: "dashboard/list_row",
                  collection: @dashboard_presentor.task_lists_with_completed_tasks,
                  as: :list,
-                 locals: { show_delete: false, show_completed_tasks: true }%>
+                 locals: { show_delete: false, show_completed_tasks: true, show_create_tasks: false }%>
     </ul>
   </div>
 </div>
