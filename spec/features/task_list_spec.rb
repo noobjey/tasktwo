@@ -85,6 +85,9 @@ RSpec.feature "Lists:", type: :feature do
           end
         end
 
+        within "#flash-messages" do
+          expect(page).to have_content("List #{list_archived.title} removed.")
+        end
         within "#archived-task-lists" do
           expect(page).not_to have_content(list_archived.title)
         end

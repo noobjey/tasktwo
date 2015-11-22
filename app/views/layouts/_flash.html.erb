@@ -1,0 +1,5 @@
+<% flash.each do |type, message| %>
+  <div class="card-panel alert alert-<%= type %> text-center" role="alert">
+    <span><%= sanitize(message) %></span>
+  </div>
+<% end %>

@@ -21,10 +21,12 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    list = find_list().destroy
+    list_to_delete = find_list().destroy
 
-    if list
-      flash[:success] = "List #{list.title} removed."
+    if list_to_delete
+      flash[:success] = "List #{list_to_delete.title} removed."
+    else
+      flash[:error] = "You cannot remove an unarchived task."
     end
 
     redirect_to dashboard_path
