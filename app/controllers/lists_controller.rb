@@ -20,6 +20,18 @@ class ListsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def destroy
+    list_to_delete = find_list().destroy
+
+    if list_to_delete
+      flash[:success] = "List #{list_to_delete.title} removed."
+    else
+      flash[:error] = "You cannot remove an unarchived task."
+    end
+
+    redirect_to dashboard_path
+  end
+
 
   private
 
