@@ -1,14 +1,12 @@
 require "rails_helper"
 
 
-
-
 RSpec.feature "Lists:", type: :feature do
 
   describe "a user" do
     let!(:list_2) { List.create(title: "List Two") }
     let!(:list_3) { List.create(title: "List Three") }
-    let!(:list_archived) { List.create(title: "Archived List", archive: true) }
+    let!(:list_archived) { List.create(title: "An Archived List", archive: true) }
 
     before do
       visit dashboard_path
@@ -77,6 +75,21 @@ RSpec.feature "Lists:", type: :feature do
           expect(page).not_to have_content(list_2.title)
         end
       end
+    end
+
+    context "that deletes a list", focus: true do
+      it "can delete an archived list" do
+        within "#archived-task-lists" do
+          within first("tbody tr") do
+            click_on "Delete"
+          end
+        end
+        
+        within "#archived-task-lists" do
+          expect(page).not_to have_content(list_archived.title)
+        end
+      end
+
     end
   end
 

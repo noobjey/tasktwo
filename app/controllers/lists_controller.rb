@@ -20,6 +20,12 @@ class ListsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def destroy
+    find_list().destroy
+
+    redirect_to dashboard_path
+  end
+
 
   private
 
