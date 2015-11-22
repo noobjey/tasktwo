@@ -9,7 +9,14 @@ $(document).ready(function() {
   var table = $('.tasks-table').DataTable(
     {
       paging: false,
-      dom: 'lrti'
+      dom: 'lrti',
+      "aoColumns": [
+        null,
+        { "bSortable": false },
+        null,
+        null,
+        { "bSortable": false }
+      ]
     }
   );
 
