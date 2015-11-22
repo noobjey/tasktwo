@@ -46,7 +46,7 @@
       </thead>
 
       <tbody>
-      <%= render partial: "dashboard/task_row", collection: list.tasks, as: :task, locals: { list: list } %>
+      <%= render partial: "dashboard/task_row", collection: list.tasks.uncompleted, as: :task, locals: { list: list } %>
       </tbody>
     </table>
 
