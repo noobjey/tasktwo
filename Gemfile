@@ -12,6 +12,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'materialize-sass'
+gem 'jquery-datatables-rails', github: "rweng/jquery-datatables-rails", branch: "master"
 
 group :development, :test do
   gem 'byebug'
