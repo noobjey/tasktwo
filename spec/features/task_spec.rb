@@ -34,7 +34,7 @@ RSpec.feature "Tasks:", type: :feature do
           within first("ul li .collapsible-body") do
             expect(page).to have_content "New Task Title"
             expect(page).to have_content "New task description."
-            expect(page).to have_content "01 Jan 2016"
+            expect(page).to have_content "01 January 2016"
           end
         end
       end
@@ -63,7 +63,7 @@ RSpec.feature "Tasks:", type: :feature do
           within first("ul li .collapsible-body") do
             expect(page).to have_content "Updated Task Title"
             expect(page).to have_content "Updated task description."
-            expect(page).to have_content "01 Jan 2019"
+            expect(page).to have_content "01 January 2019"
           end
         end
       end

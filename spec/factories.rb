@@ -30,7 +30,7 @@ FactoryGirl.define do
   factory :task do
     title { Faker::Hacker.ingverb }
     description { Faker::Hacker.say_something_smart }
-    due_date { Faker::Date.forward(rand(20)) }
+    due_date { Faker::Date.forward(rand(200)) }
     list
 
     factory :completed_tasks do

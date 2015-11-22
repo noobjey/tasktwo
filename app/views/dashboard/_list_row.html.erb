@@ -26,15 +26,17 @@
 
   <div class="collapsible-body">
 
-    <div class="container">
-      <div class="section">
-        <div col="row">
-          <%= link_to "New Task", new_list_task_path(list), class: "waves-effect waves-light btn col s10 offset-s1" %>
+    <% if show_create_tasks %>
+      <div class="container">
+        <div class="section">
+          <div col="row">
+            <%= link_to "New Task", new_list_task_path(list), class: "waves-effect waves-light btn col s10 offset-s1" %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
 
-    <table class="bordered highlight centered tasks-table" data-order='[[ 3, "asc" ]]'>
+    <table class="bordered highlight centered tasks-table" data-order='[[ 0, "asc" ]]'>
       <thead>
       <tr>
         <th class="my-sortable">Title</th>
@@ -46,10 +48,10 @@
       </thead>
 
       <tbody>
-      <%= render partial: "dashboard/task_row",
+      <%= render partial:    "dashboard/task_row",
                  collection: show_completed_tasks ? list.tasks.completed : list.tasks.uncompleted,
-                 as: :task,
-                 locals: { list: list } %>
+                 as:         :task,
+                 locals:     { list: list } %>
       </tbody>
     </table>
 
