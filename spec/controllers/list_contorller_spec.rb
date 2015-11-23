@@ -3,7 +3,7 @@ require "support/login_helper"
 
 RSpec.describe ListsController, type: :controller do
 
-  describe "#delete", focus: true do
+  describe "#delete" do
     let!(:user) { create(:user) }
     let!(:list_archived) { create(:archived_list) }
     let!(:list_unarchived) { create(:list) }
