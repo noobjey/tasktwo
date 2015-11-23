@@ -32,7 +32,7 @@ class ListsController < ApplicationController
       flash[:success] = "List #{find_list().title} updated."
       redirect_to dashboard_path
     else
-      flash[:error] = "List count not be updated, try again."
+      flash[:error] = "List could not be updated, try again."
       redirect_to :back
     end
 
