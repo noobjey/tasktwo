@@ -7,17 +7,17 @@ class TasksController < ApplicationController
   end
 
   def create
-    list = find_list
-    task = Task.create(allowed_params)
+    task = Task.new(allowed_params)
 
-    if list && task
-      list.tasks << task
+    if task.save
+      find_list.tasks << task
       flash[:success] = "Task #{task.title} created."
+      redirect_to dashboard_path
     else
       flash[:error] = "Problem creating task, try again."
+      redirect_to new_list_task_path(find_list)
     end
 
-    redirect_to dashboard_path
   end
 
   def edit
@@ -26,10 +26,14 @@ class TasksController < ApplicationController
   end
 
   def update
-    task = find_task()
-    task.update_attributes(allowed_params)
-
-    redirect_to dashboard_path
+    if task_updated
+      find_list.tasks << find_task
+      flash[:success] = "Task #{find_task.title} updated."
+      redirect_to dashboard_path
+    else
+      flash[:error] = "Problem updating task, try again."
+      redirect_to :back
+    end
   end
 
 
@@ -45,5 +49,9 @@ class TasksController < ApplicationController
 
   def find_list
     List.find_by(id: params[:list_id])
+  end
+
+  def task_updated
+    find_task.update_attributes(allowed_params)
   end
 end
