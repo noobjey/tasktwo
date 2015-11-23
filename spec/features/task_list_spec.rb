@@ -1,17 +1,20 @@
 require "rails_helper"
+require "support/login_helper"
 
 RSpec.feature "Lists:", type: :feature do
+  include LoginHelper
 
   describe "a user" do
-    let!(:list_2) { List.create(title: "List Two") }
-    let!(:list_3) { List.create(title: "List Three") }
-    let!(:list_archived) { List.create(title: "An Archived List", archive: true) }
+    let!(:user) {create(:user)}
+    let!(:list_2) { create(:list, user: user)}
+    let!(:list_3) { create(:list, user: user) }
+    let!(:list_archived) { create(:archived_list, user: user) }
 
     before do
-      visit dashboard_path
+      stub_omniauth_github()
+      login_user()
     end
 
-    
     context "viewing their lists" do
 
       it "sees unarchived lists by default" do
@@ -33,6 +36,10 @@ RSpec.feature "Lists:", type: :feature do
 
 
     context "that creates a list" do
+      before do
+        user.lists.delete_all
+      end
+
       it "can see the new list" do
         create_new_list()
 

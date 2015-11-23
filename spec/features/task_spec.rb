@@ -1,11 +1,20 @@
 require "rails_helper"
+require "support/login_helper"
 
 RSpec.feature "Tasks:", type: :feature do
 
+  include LoginHelper
+
   describe "a user" do
+    let!(:user) { create(:user) }
+
+    before do
+      stub_omniauth_github
+      login_user()
+    end
 
     context "with a list" do
-      let!(:list_with_no_tasks) { create(:list, tasks_count: 0) }
+      let!(:list_with_no_tasks) { create(:list, tasks_count: 0, user: user) }
 
       before do
         visit dashboard_path
@@ -41,7 +50,7 @@ RSpec.feature "Tasks:", type: :feature do
     end
 
     context "with existing tasks" do
-      let!(:list_with_a_task) { create(:list, tasks_count: 1) }
+      let!(:list_with_a_task) { create(:list, tasks_count: 1, user: user) }
       let!(:task) { list_with_a_task.tasks.first }
 
       before do
@@ -84,7 +93,7 @@ RSpec.feature "Tasks:", type: :feature do
     end
 
     context "with completed tasks" do
-      let!(:list_with_completed_tasks) { create(:list_with_completed_tasks, tasks_count: 1) }
+      let!(:list_with_completed_tasks) { create(:list_with_completed_tasks, tasks_count: 1, user: user) }
       let!(:completed_task) { list_with_completed_tasks.tasks.last }
       before do
         visit dashboard_path
