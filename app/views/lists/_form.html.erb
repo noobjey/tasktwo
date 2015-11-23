@@ -1,41 +1,35 @@
-<div class="row center-align">
-  <div class="col s6">
+<div class="section center-align">
+  <h5><%= form_title %></h5>
 
-    <div class="section center-align">
-      <h5><%= form_title %></h5>
+  <div class="divider"></div>
+</div>
 
-      <div class="divider"></div>
-    </div>
+<%= form_for list, method: form_method do |f| %>
+  <div class="section">
 
-    <%= form_for list, method: form_method do |f| %>
-      <div class="section">
+    <div class="row">
 
-        <div class="row">
-
-          <div class="input-field col s8">
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-          </div>
-
-          <div class="switch col s4">
-            <div>
-              <%= f.label :archive %>
-            </div>
-
-            <label>
-              Off
-              <%= f.check_box :archive %>
-              <span class="lever"></span>
-              On
-            </label>
-          </div>
-
-        </div>
+      <div class="input-field col s8">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
       </div>
 
-      <%= f.submit class: "btn" %>
+      <div class="switch col s4">
+        <div>
+          <%= f.label :archive %>
+        </div>
 
-    <% end %>
+        <label>
+          Off
+          <%= f.check_box :archive %>
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
 
+    </div>
   </div>
-</div>
+
+  <%= f.submit class: "btn" %>
+
+<% end %>

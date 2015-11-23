@@ -6,5 +6,9 @@
   </div>
 </div>
 
-<%= render partial: "lists/form", locals: { form_title: "Task List", form_method: :post, list: @list } %>
+<div class="row">
+  <div class="col s8 offset-s2">
+<%= render partial: "lists/form", locals: { form_title: "New Task List", form_method: :post, list: @list } %>
+  </div>
+</div>
 
