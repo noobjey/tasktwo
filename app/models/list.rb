@@ -5,7 +5,7 @@ class List < ActiveRecord::Base
   before_destroy :ensure_archived
 
   validates :title, uniqueness: true
-  validates :title, presence: true
+  validates :title, presence: true, allow_blank: false
 
   def self.unarchived
     where(archive: false)

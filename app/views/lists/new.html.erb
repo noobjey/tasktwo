@@ -1,2 +1,10 @@
+<%= render partial: "layouts/header" %>
+
+<div class="row">
+  <div id="flash-messages" class="col s8 offset-s2 center-align">
+    <%= render partial: "layouts/flash" %>
+  </div>
+</div>
+
 <%= render partial: "lists/form", locals: { form_title: "Task List", form_method: :post, list: @list } %>
 
