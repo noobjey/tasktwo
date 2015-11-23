@@ -27,6 +27,12 @@ RSpec.describe Task, type: :model do
         expect(uncompleted_task.status_string).to eq("active")
       end
 
+      it "#due_date_formatted" do
+        today = Date.today().strftime("%d %B %Y")
+
+        expect(uncompleted_task.due_date_formatted).to eq(today)
+      end
+
       context "validations" do
         it "requires title" do
           task = Task.new(title: "")
