@@ -7,15 +7,16 @@ class ListsController < ApplicationController
   end
 
   def create
-    list = List.create(allowed_params)
-    if list
+    list = List.new(allowed_params)
+    if list.save
       current_user.lists << list
       flash[:success] = "List #{list.title} created."
+      redirect_to dashboard_path
     else
       flash[:error] = "List could not be created, try again."
+      redirect_to new_list_path
     end
 
-    redirect_to dashboard_path
   end
 
 
@@ -25,13 +26,16 @@ class ListsController < ApplicationController
 
 
   def update
-    if find_list().update_attributes(allowed_params)
+    updated_list = find_list().update_attributes(allowed_params)
+
+    if updated_list
       flash[:success] = "List #{find_list().title} updated."
+      redirect_to dashboard_path
     else
       flash[:error] = "List count not be updated, try again."
+      redirect_to :back
     end
 
-    redirect_to dashboard_path
   end
 
 

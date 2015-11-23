@@ -22,6 +22,11 @@ RSpec.describe List, type: :model do
       expect(invalid_list.valid?).to eq(false)
     end
 
+    it "requires title" do
+      invalid_list = List.create(title: '')
+      expect(invalid_list.valid?).to eq(false)
+    end
+
     context "#with completed tasks" do
       it "returns lists containing completed tasks" do
         list_with_completed_tasks = create(:list_with_completed_tasks)

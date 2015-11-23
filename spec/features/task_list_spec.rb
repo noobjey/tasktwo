@@ -66,17 +66,29 @@ RSpec.feature "Lists:", type: :feature do
       end
 
       it "can see the new list" do
-        create_new_list()
+        goto_create_new_list()
 
         expect(current_path).to eq(new_list_path)
         expect(page).to have_field("Title")
         expect(page).to have_button("Create")
 
-        fill_in_list_title("First List")
+        create_list_with_title("First List")
 
         expect(current_path).to eq(dashboard_path)
         within "#task-lists" do
           expect(page).to have_content("First List")
+        end
+      end
+
+      it "sees error when list not created" do
+        goto_create_new_list()
+
+        create_list_with_title("")
+
+        expect(current_path).to eq(new_list_path)
+
+        within ("#flash-messages") do
+          expect(page).to have_content("List could not be created, try again.")
         end
       end
     end
@@ -143,14 +155,14 @@ RSpec.feature "Lists:", type: :feature do
     end
   end
 
-  def create_new_list
+  def goto_create_new_list
     within "#task-lists" do
       expect(page).to have_link "New List"
       click_on "New List"
     end
   end
 
-  def fill_in_list_title(title)
+  def create_list_with_title(title)
     fill_in "Title", with: title
     click_on "Create List"
   end
