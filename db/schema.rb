@@ -1,4 +1,5 @@
-ActiveRecord::Schema.define(version: 20151122032156) do
+
+ActiveRecord::Schema.define(version: 20151123005148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -8,6 +9,7 @@ ActiveRecord::Schema.define(version: 20151122032156) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "archive",    default: false
+    t.integer  "user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -18,6 +20,14 @@ ActiveRecord::Schema.define(version: 20151122032156) do
     t.integer  "list_id"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "token"
+    t.string   "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
