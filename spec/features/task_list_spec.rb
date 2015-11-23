@@ -5,10 +5,11 @@ RSpec.feature "Lists:", type: :feature do
   include LoginHelper
 
   describe "a user" do
-    let!(:user) {create(:user)}
-    let!(:list_2) { create(:list, user: user)}
+    let!(:user) { create(:user) }
+    let!(:list_2) { create(:list, user: user) }
     let!(:list_3) { create(:list, user: user) }
     let!(:list_archived) { create(:archived_list, user: user) }
+    let!(:list_with_completed_tasks) { create(:list_with_completed_tasks) }
 
     before do
       stub_omniauth_github()
@@ -30,6 +31,30 @@ RSpec.feature "Lists:", type: :feature do
           expect(page).not_to have_content(list_2.title)
           expect(page).not_to have_content(list_3.title)
           expect(page).to have_content(list_archived.title)
+        end
+      end
+
+      it "can see all tasks on archived list" do
+        list_with_completed_tasks.update_attributes({ archive: true })
+
+        visit dashboard_path
+
+        within "#archived-task-lists" do
+          expect(page).to have_content(list_with_completed_tasks.title)
+          expect(page).to have_content("active")
+          expect(page).to have_content("complete")
+        end
+      end
+
+      it "can see all tasks on completed tasks list" do
+        list_with_completed_tasks.tasks.first.update_attributes({ status: true })
+
+        visit dashboard_path
+
+        within "#completed-task-lists" do
+          expect(page).to have_content(list_with_completed_tasks.title)
+          expect(page).to have_content("active")
+          expect(page).to have_content("complete")
         end
       end
     end

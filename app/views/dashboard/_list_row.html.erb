@@ -49,7 +49,7 @@
 
       <tbody>
       <%= render partial:    "dashboard/task_row",
-                 collection: show_completed_tasks ? list.tasks.completed : list.tasks.uncompleted,
+                 collection: show_completed_tasks ? list.tasks : list.tasks.uncompleted,
                  as:         :task,
                  locals:     { list: list } %>
       </tbody>
