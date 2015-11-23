@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   def new
-    @list = List.find_by(params[:id])
+    @list = find_list()
     @task = Task.new
   end
 
@@ -11,6 +11,8 @@ class TasksController < ApplicationController
     if list && task
       list.tasks << task
       flash[:success] = "Task #{task.title} created."
+    else
+      flash[:error] = "Problem creating task, try again."
     end
 
     redirect_to dashboard_path
