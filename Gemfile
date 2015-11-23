@@ -15,6 +15,7 @@ gem 'materialize-sass'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails', branch: 'master'
 gem 'figaro'
 gem 'omniauth-github'
+gem 'rails_12factor', group: :production
 
 group :development, :test do
   gem 'byebug'
