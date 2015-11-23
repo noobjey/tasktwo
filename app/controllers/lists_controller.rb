@@ -5,7 +5,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    List.create(allowed_params)
+    current_user.lists << List.create(allowed_params)
 
     redirect_to dashboard_path
   end
