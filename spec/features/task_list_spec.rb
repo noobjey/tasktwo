@@ -120,6 +120,19 @@ RSpec.feature "Lists:", type: :feature do
           expect(page).not_to have_content(list_2.title)
         end
       end
+
+      it "sees error when list not updated" do
+        edit_first_list()
+        fill_in "Title", with: ""
+
+        click_on "Update List"
+
+        expect(current_path).to eq(edit_list_path(list_2))
+
+        within ("#flash-messages") do
+          expect(page).to have_content("List could not be updated, try again.")
+        end
+      end
     end
 
 
