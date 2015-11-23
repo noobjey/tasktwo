@@ -1,14 +1,19 @@
 class DashboardPresentor
+  attr_reader :user
+
+  def initialize(user)
+    @user = user
+  end
 
   def task_lists
-    List.unarchived
+    user.lists.unarchived
   end
 
   def archived_task_lists
-    List.archived
+    user.lists.archived
   end
 
   def task_lists_with_completed_tasks
-    List.unarchived.with_completed_tasks
+    user.lists.unarchived.with_completed_tasks
   end
 end
