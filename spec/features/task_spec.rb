@@ -20,30 +20,56 @@ RSpec.feature "Tasks:", type: :feature do
         visit dashboard_path
       end
 
-      it "can create a task" do
-        within "#task-lists" do
-          within first("ul li .collapsible-body") do
-            expect(page).to have_link "New Task"
-            click_on "New Task"
+      context "creates a task" do
+
+        it "with valid data" do
+          goto_create_task()
+
+          expect(current_path).to eq(new_list_task_path(list_with_no_tasks))
+          fill_in "Title", with: "New Task Title"
+          fill_in "Description", with: "New task description."
+          fill_in "Due date", with: "01/01/2016"
+          click_on "Create Task"
+
+          expect(current_path).to eq(dashboard_path)
+          within "#flash-messages" do
+            expect(page).to have_content("Task New Task Title created.")
+          end
+
+          within "#task-lists" do
+            within first("ul li .collapsible-body") do
+              expect(page).to have_content "New Task Title"
+              expect(page).to have_content "New task description."
+              expect(page).to have_content "01 January 2016"
+            end
           end
         end
 
-        expect(current_path).to eq(new_list_task_path(list_with_no_tasks))
-        fill_in "Title", with: "New Task Title"
-        fill_in "Description", with: "New task description."
-        fill_in "Due date", with: "01/01/2016"
-        click_on "Create Task"
+        it "with invalid title" do
+          goto_create_task()
 
-        expect(current_path).to eq(dashboard_path)
-        within "#flash-messages" do
-          expect(page).to have_content("Task New Task Title created.")
+          fill_in "Title", with: ""
+          fill_in "Description", with: "New task description."
+          fill_in "Due date", with: "01/01/2016"
+          click_on "Create Task"
+
+          expect(current_path).to eq(new_list_task_path(list_with_no_tasks))
+          within "#flash-messages" do
+            expect(page).to have_content("Problem creating task, try again.")
+          end
         end
 
-        within "#task-lists" do
-          within first("ul li .collapsible-body") do
-            expect(page).to have_content "New Task Title"
-            expect(page).to have_content "New task description."
-            expect(page).to have_content "01 January 2016"
+        it "with invalid date" do
+          goto_create_task()
+
+          fill_in "Title", with: "Title"
+          fill_in "Description", with: "New task description."
+          fill_in "Due date", with: ""
+          click_on "Create Task"
+
+          expect(current_path).to eq(new_list_task_path(list_with_no_tasks))
+          within "#flash-messages" do
+            expect(page).to have_content("Problem creating task, try again.")
           end
         end
       end
@@ -68,12 +94,31 @@ RSpec.feature "Tasks:", type: :feature do
 
         expect(current_path).to eq(dashboard_path)
 
+        within "#flash-messages" do
+          expect(page).to have_content("Task Updated Task Title updated.")
+        end
+
         within "#task-lists" do
           within first("ul li .collapsible-body") do
             expect(page).to have_content "Updated Task Title"
             expect(page).to have_content "Updated task description."
             expect(page).to have_content "01 January 2019"
           end
+        end
+      end
+
+      it "cannot update with invalid data" do
+        edit_first_task()
+
+        fill_in "Title", with: "Updated Task Title"
+        fill_in "Description", with: "Updated task description."
+        fill_in "Due date", with: "not a date"
+        click_on "Update Task"
+
+        expect(current_path).to eq(edit_list_task_path(list_with_a_task, list_with_a_task.tasks.first))
+
+        within "#flash-messages" do
+          expect(page).to have_content("Problem updating task, try again.")
         end
       end
 
@@ -145,6 +190,15 @@ RSpec.feature "Tasks:", type: :feature do
     within "#task-lists" do
       within first("ul li .collapsible-body") do
         click_on "Edit"
+      end
+    end
+  end
+
+  def goto_create_task
+    within "#task-lists" do
+      within first("ul li .collapsible-body") do
+        expect(page).to have_link "New Task"
+        click_on "New Task"
       end
     end
   end
