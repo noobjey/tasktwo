@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_action :require_user
+
   def new
     @list = find_list()
     @task = Task.new

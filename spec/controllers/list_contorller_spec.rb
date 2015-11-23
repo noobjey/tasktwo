@@ -3,17 +3,14 @@ require "support/login_helper"
 
 RSpec.describe ListsController, type: :controller do
 
-  include LoginHelper
-
-  describe "#delete" do
+  describe "#delete", focus: true do
+    let!(:user) { create(:user) }
+    let!(:list_archived) { create(:archived_list) }
+    let!(:list_unarchived) { create(:list) }
 
     before do
-      stub_omniauth_github()
-      login_user()
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     end
-
-    let!(:list_archived) {List.create(title: "An Archived List", archive: true)}
-    let!(:list_unarchived) {List.create(title: "An Unarchived List", archive: false)}
 
     it "can delete an archived task" do
       delete :destroy, id: list_archived.id
