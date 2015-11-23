@@ -1,24 +1,39 @@
 class ListsController < ApplicationController
+  before_action :require_user
+  before_action :require_list_owner, only: [:edit, :update, :destroy]
 
   def new
     @list = List.new()
   end
 
   def create
-    current_user.lists << List.create(allowed_params)
+    list = List.create(allowed_params)
+    if list
+      current_user.lists << list
+      flash[:success] = "List #{list.title} created."
+    else
+      flash[:error] = "List could not be created, try again."
+    end
 
     redirect_to dashboard_path
   end
+
 
   def edit
     @list = find_list()
   end
 
+
   def update
-    find_list().update_attributes(allowed_params)
+    if find_list().update_attributes(allowed_params)
+      flash[:success] = "List #{find_list().title} updated."
+    else
+      flash[:error] = "List count not be updated, try again."
+    end
 
     redirect_to dashboard_path
   end
+
 
   def destroy
     list_to_delete = find_list().destroy
@@ -41,5 +56,9 @@ class ListsController < ApplicationController
 
   def allowed_params
     params.require(:list).permit(:title, :archive)
+  end
+
+  def require_list_owner
+    redirect_to dashboard_path unless find_list().user_id == current_user.id
   end
 end
